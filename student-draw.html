@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>多媒體系統作業報告抽籤系統</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="student-draw.css?v=20260429-5">
+</head>
+<body>
+  <div class="page-shell">
+    <div class="page-backdrop page-backdrop-left"></div>
+    <div class="page-backdrop page-backdrop-right"></div>
+
+    <main class="layout">
+      <header class="hero-panel">
+        <div>
+          <p class="eyebrow">Presentation Draw Console</p>
+          <h1 id="courseTitle">多媒體系統作業報告抽籤系統</h1>
+          <p class="hero-copy">面向課堂現場設計的專業抽籤介面，提供即時抽籤、順序提示與名單狀態追蹤。</p>
+        </div>
+        <div class="hero-badge">
+          <span class="hero-badge-label">Live Session</span>
+          <span class="hero-badge-value" id="sessionState">尚未開始</span>
+        </div>
+      </header>
+
+      <section class="stats-grid" aria-label="抽籤統計">
+        <article class="stat-card">
+          <span class="stat-label">參與抽籤人數</span>
+          <strong class="stat-value" id="totalCount">--</strong>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">已抽人數</span>
+          <strong class="stat-value" id="drawnCount">--</strong>
+        </article>
+        <article class="stat-card stat-card-highlight">
+          <span class="stat-label">尚未抽中人數</span>
+          <strong class="stat-value" id="remainingCount">--</strong>
+        </article>
+      </section>
+
+      <section class="control-panel">
+        <div class="control-copy">
+          <h2>抽籤控制</h2>
+          <p>開始抽籤前可在學生總列表點選狀態，將學生設定為作業未交；第一次按下 Draw 後名單會鎖定，並一路抽到可抽學生全部抽完。</p>
+        </div>
+        <div class="control-actions">
+          <button id="drawButton" class="action-button primary" type="button">Draw</button>
+          <button id="resetButton" class="action-button secondary" type="button">Reset</button>
+          <button id="fullscreenButton" class="action-button secondary fullscreen-button" type="button">全螢幕投影</button>
+        </div>
+      </section>
+
+      <section id="errorBanner" class="error-banner hidden" role="alert"></section>
+
+      <section class="focus-grid" aria-label="報告順序">
+        <article class="focus-card current-card">
+          <div class="card-header">
+            <span class="card-label">目前報告學生</span>
+            <span class="card-pill card-pill-current">Current</span>
+          </div>
+          <div id="currentStudent" class="student-spotlight empty-state">
+            <p>尚未抽出</p>
+          </div>
+        </article>
+
+        <article class="focus-card next-card">
+          <div class="card-header">
+            <span class="card-label">下一位報告學生</span>
+            <span class="card-pill card-pill-next">Next</span>
+          </div>
+          <div id="nextStudent" class="student-spotlight empty-state">
+            <p>尚未抽出</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="table-panel">
+        <div class="table-header">
+          <div>
+            <p class="eyebrow">Student Directory</p>
+            <h2>學生總列表</h2>
+          </div>
+          <p class="table-note">抽籤前可點選狀態切換作業未交；作業未交者不列入抽籤。</p>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">序號</th>
+                <th scope="col">班級</th>
+                <th scope="col">學號</th>
+                <th scope="col">姓名</th>
+                <th scope="col">狀態</th>
+              </tr>
+            </thead>
+            <tbody id="studentTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="student-draw.config.js?v=20260429-5"></script>
+  <script src="student-draw.js?v=20260429-5"></script>
+</body>
+</html>
